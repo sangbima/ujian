@@ -23,38 +23,7 @@
 
 
 <div class="col-md-8">
-<?php 
-if($this->config->item('open_quiz')){
-	?>
-<h3><?php echo $this->lang->line('recent_quizzes');?></h3>
- 
-<?php 
-foreach($recent_quiz as $key => $val){
-?>
-<div style="margin-top:30px;">
-<label><a href="<?php echo site_url('quiz/quiz_detail/'.$val['quid'].'/'.urlencode($val['quiz_name'])); ?>"><?php echo $val['quiz_name'];?></a></label> 
-<span style="font-size:12px;color:#999;"><?php echo $this->lang->line('available');?> <?php echo date('d M y h:i A',$val['start_date']);?>
-</span>
-<p>
-<span style="font-size:12px;color:#999;">
-<?php echo substr(strip_tags($val['description']),0,100);?>
-</span>
-<br>
-<?php echo $this->lang->line('questions');?>: <?php echo $val['noq'];?> | 
-<?php echo $this->lang->line('duration2');?> <?php echo $val['duration'];?> Min. 
-</p>
-</div>
-<?php 
-}
-if(count($recent_quiz)==0){
-	echo $this->lang->line('no_record_found');
-}
-?>
-<a href="<?php echo site_url('quiz/open_quiz/0');?>" class="btn btn-default " style="margin-top:30px;padding-left:50px;padding-right:50px;"><?php echo $this->lang->line('view_all');?></a>
 
-<?php 
-}
-?>
 </div>
 <div class="col-md-4">
 
