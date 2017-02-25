@@ -79,42 +79,42 @@ class Qbank extends CI_Controller {
 				if(!is_numeric($this->input->post('nop'))){
 					$nop=4;
 				}
-				redirect('qbank/new_question_1/'.$nop);
+				redirect('qbank/question_new_1/'.$nop);
 			}
 			if($this->input->post('question_type')=='2'){
 				$nop=$this->input->post('nop');
 				if(!is_numeric($this->input->post('nop'))){
 					$nop=4;
 				}
-				redirect('qbank/new_question_2/'.$nop);
+				redirect('qbank/question_new_2/'.$nop);
 			}
 			if($this->input->post('question_type')=='3'){
 				$nop=$this->input->post('nop');
 				if(!is_numeric($this->input->post('nop'))){
 					$nop=4;
 				}
-				redirect('qbank/new_question_3/'.$nop);
+				redirect('qbank/question_new_3/'.$nop);
 			}
 			if($this->input->post('question_type')=='4'){
 				$nop=$this->input->post('nop');
 				if(!is_numeric($this->input->post('nop'))){
 					$nop=4;
 				}
-				redirect('qbank/new_question_4/'.$nop);
+				redirect('qbank/question_new_4/'.$nop);
 			}
 			if($this->input->post('question_type')=='5'){
 				$nop=$this->input->post('nop');
 				if(!is_numeric($this->input->post('nop'))){
 					$nop=4;
 				}
-				redirect('qbank/new_question_5/'.$nop);
+				redirect('qbank/question_new_5/'.$nop);
 			}
 
 		}
 
 		$data['title']=$this->lang->line('add_new').' '.$this->lang->line('question');
 		$this->load->view('header',$data);
-		$this->load->view('pre_new_question',$data);
+		$this->load->view('question_pre_new',$data);
 		$this->load->view('footer',$data);
 	}
 	
@@ -141,7 +141,7 @@ class Qbank extends CI_Controller {
 		// fetching level list
 		$data['level_list']=$this->qbank_model->level_list();
 		$this->load->view('header',$data);
-		$this->load->view('new_question_1',$data);
+		$this->load->view('question_new_1',$data);
 		$this->load->view('footer',$data);
 	}
 	
@@ -168,7 +168,7 @@ class Qbank extends CI_Controller {
 		// fetching level list
 		$data['level_list']=$this->qbank_model->level_list();
 		$this->load->view('header',$data);
-		$this->load->view('new_question_2',$data);
+		$this->load->view('question_new_2',$data);
 		$this->load->view('footer',$data);
 	}
 	
@@ -195,7 +195,7 @@ class Qbank extends CI_Controller {
 		// fetching level list
 		$data['level_list']=$this->qbank_model->level_list();
 		$this->load->view('header',$data);
-		$this->load->view('new_question_3',$data);
+		$this->load->view('question_new_3',$data);
 		$this->load->view('footer',$data);
 	}
 	
@@ -221,7 +221,7 @@ class Qbank extends CI_Controller {
 		// fetching level list
 		$data['level_list']=$this->qbank_model->level_list();
 		$this->load->view('header',$data);
-		$this->load->view('new_question_4',$data);
+		$this->load->view('question_new_4',$data);
 		$this->load->view('footer',$data);
 	}
 	
@@ -247,7 +247,7 @@ class Qbank extends CI_Controller {
 		// fetching level list
 		$data['level_list']=$this->qbank_model->level_list();
 		$this->load->view('header',$data);
-		$this->load->view('new_question_5',$data);
+		$this->load->view('question_new_5',$data);
 		$this->load->view('footer',$data);
 	}
 	
@@ -275,7 +275,7 @@ class Qbank extends CI_Controller {
 		// fetching level list
 		$data['level_list']=$this->qbank_model->level_list();
 		$this->load->view('header',$data);
-		$this->load->view('edit_question_1',$data);
+		$this->load->view('question_edit_1',$data);
 		$this->load->view('footer',$data);
 	}
 	
@@ -304,7 +304,7 @@ class Qbank extends CI_Controller {
 		// fetching level list
 		$data['level_list']=$this->qbank_model->level_list();
 		$this->load->view('header',$data);
-		$this->load->view('edit_question_2',$data);
+		$this->load->view('question_edit_2',$data);
 		$this->load->view('footer',$data);
 	}
 
@@ -332,7 +332,7 @@ class Qbank extends CI_Controller {
 		// fetching level list
 		$data['level_list']=$this->qbank_model->level_list();
 		$this->load->view('header',$data);
-		$this->load->view('edit_question_3',$data);
+		$this->load->view('question_edit_3',$data);
 		$this->load->view('footer',$data);
 	}
 
@@ -360,7 +360,7 @@ class Qbank extends CI_Controller {
 		// fetching level list
 		$data['level_list']=$this->qbank_model->level_list();
 		$this->load->view('header',$data);
-		$this->load->view('edit_question_4',$data);
+		$this->load->view('question_edit_4',$data);
 		$this->load->view('footer',$data);
 	}
 	
@@ -388,7 +388,7 @@ class Qbank extends CI_Controller {
 		// fetching level list
 		$data['level_list']=$this->qbank_model->level_list();
 		$this->load->view('header',$data);
-		$this->load->view('edit_question_5',$data);
+		$this->load->view('question_edit_5',$data);
 		$this->load->view('footer',$data);
 	}
 	

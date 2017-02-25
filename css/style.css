@@ -784,7 +784,7 @@ button.btn.btn-default i.fa.fa-search{
     background: #f4f7f9;
     float: left;
 }
-button.btn.btn-default{
+/*button.btn.btn-default{
     outline: none;
     padding: 10px 0 9px;
     width: 15%;
@@ -792,7 +792,7 @@ button.btn.btn-default{
     background: #00bcd4;
     border: solid 1px #00bcd4;
     border-radius: 0;
-}	
+}*/	
 /*button.btn.btn-default.btn-search{
     outline: none;
     padding: 10px 0 9px;

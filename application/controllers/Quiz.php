@@ -14,26 +14,26 @@ class Quiz extends CI_Controller {
 
 	public function index($limit='0',$list_view='grid')
 	{
-	// redirect if not loggedin
-	if(!$this->session->userdata('logged_in')){
-		redirect('login');
-	}
-	$logged_in=$this->session->userdata('logged_in');
-	if($logged_in['base_url'] != base_url()){
-		$this->session->unset_userdata('logged_in');		
-		redirect('login');
-	}
+		// redirect if not loggedin
+		if(!$this->session->userdata('logged_in')){
+			redirect('login');
+		}
+		$logged_in=$this->session->userdata('logged_in');
+		if($logged_in['base_url'] != base_url()){
+			$this->session->unset_userdata('logged_in');		
+			redirect('login');
+		}
 
-	$logged_in=$this->session->userdata('logged_in');
-	
-	$data['list_view']=$list_view;
-	$data['limit']=$limit;
-	$data['title']=$this->lang->line('quiz');
-	// fetching quiz list
-	$data['result']=$this->quiz_model->quiz_list($limit);
-	$this->load->view('header',$data);
-	$this->load->view('quiz_list',$data);
-	$this->load->view('footer',$data);
+		$logged_in=$this->session->userdata('logged_in');
+		
+		$data['list_view']=$list_view;
+		$data['limit']=$limit;
+		$data['title']=$this->lang->line('quiz');
+		// fetching quiz list
+		$data['result']=$this->quiz_model->quiz_list($limit);
+		$this->load->view('header',$data);
+		$this->load->view('quiz_list',$data);
+		$this->load->view('footer',$data);
 	}
 	
 	function open_quiz($limit='0')
@@ -46,7 +46,7 @@ class Quiz extends CI_Controller {
 		$data['open_quiz']=$this->quiz_model->open_quiz($limit);
 		
 		$this->load->view('header',$data);
-		$this->load->view('open_quiz',$data);
+		$this->load->view('quiz_open',$data);
 		$this->load->view('footer',$data);
 	}
 
@@ -71,7 +71,7 @@ class Quiz extends CI_Controller {
 		// fetching group list
 		$data['group_list']=$this->user_model->group_list();
 		$this->load->view('header',$data);
-		$this->load->view('new_quiz',$data);
+		$this->load->view('quiz_new',$data);
 		$this->load->view('footer',$data);
 	}
 	
@@ -106,7 +106,7 @@ class Quiz extends CI_Controller {
 		 	$data['level_list']=$this->qbank_model->level_list();
 		}
 		$this->load->view('header',$data);
-		$this->load->view('edit_quiz',$data);
+		$this->load->view('quiz_edit',$data);
 		$this->load->view('footer',$data);
 	}
 	
@@ -359,13 +359,13 @@ class Quiz extends CI_Controller {
 				$logged_in=$this->session->userdata('logged_in_raw');
 			}else{
 				$userdata=array(
-				'email'=>time(),
-				'password'=>md5(rand(11111,99999)),
-				'first_name'=>'Guest User',
-				'last_name'=>time(),
-				'contact_no'=>'',
-				'gid'=>$this->config->item('default_gid'),
-				'su'=>'0'		
+					'email'=>time(),
+					'password'=>md5(rand(11111,99999)),
+					'first_name'=>'Guest User',
+					'last_name'=>time(),
+					'contact_no'=>'',
+					'gid'=>$this->config->item('default_gid'),
+					'su'=>'0'		
 				);
 				$this->db->insert('savsoft_users',$userdata);
 				$uid=$this->db->insert_id();
