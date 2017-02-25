@@ -150,13 +150,13 @@ class Result extends CI_Controller {
 		$uid=$data['result']['uid'];
 		$quid=$data['result']['quid'];
 		$score=$data['result']['score_obtained'];
-		$query=$this->db->query(" select * from savsoft_result where score_obtained > '$score' and quid ='$quid' group by score_obtained ");
+		$query=$this->db->query(" select * from result where score_obtained > '$score' and quid ='$quid' group by score_obtained ");
 		$data['rank']=$query->num_rows() + 1;
-		$query=$this->db->query(" select * from savsoft_result where quid ='$quid'  group by score_obtained  ");
+		$query=$this->db->query(" select * from result where quid ='$quid'  group by score_obtained  ");
 		$data['last_rank']=$query->num_rows();
-		$query=$this->db->query(" select * from savsoft_result where quid ='$quid'  group by score_obtained  order by score_obtained desc limit 3 ");
+		$query=$this->db->query(" select * from result where quid ='$quid'  group by score_obtained  order by score_obtained desc limit 3 ");
 		$data['toppers']=$query->result_array();
-		$query=$this->db->query(" select * from savsoft_result where quid ='$quid'  group by score_obtained  order by score_obtained asc limit 1 ");
+		$query=$this->db->query(" select * from result where quid ='$quid'  group by score_obtained  order by score_obtained asc limit 1 ");
 		$data['looser']=$query->row_array();
 	
 		$this->load->view('header',$data);
@@ -190,7 +190,7 @@ class Result extends CI_Controller {
 		$durl="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl=".$enu."&choe=UTF-8";
 		copy($durl,$qrname);
 	 	
-		 $certificate_text=$data['result']['certificate_text'];
+		$certificate_text=$data['result']['certificate_text'];
 		$certificate_text=str_replace('{qr_code}',"<img src='".$qrname."'>",$certificate_text);
 		$certificate_text=str_replace('{email}',$data['result']['email'],$certificate_text);
 		$certificate_text=str_replace('{first_name}',$data['result']['first_name'],$certificate_text);
