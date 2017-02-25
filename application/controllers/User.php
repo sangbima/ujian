@@ -48,7 +48,7 @@ class User extends CI_Controller {
 		// fetching group list
 		$data['group_list']=$this->user_model->group_list();
 		$this->load->view('header',$data);
-		$this->load->view('new_user',$data);
+		$this->load->view('user_new',$data);
 		$this->load->view('footer',$data);
 	}
 	
@@ -112,7 +112,7 @@ class User extends CI_Controller {
 		$data['group_list']=$this->user_model->group_list();
 		$this->load->view('header',$data);
 		if($logged_in['su']=='1'){
-			$this->load->view('edit_user',$data);
+			$this->load->view('user_edit',$data);
 		}else{
 			$this->load->view('myaccount',$data);	
 		}

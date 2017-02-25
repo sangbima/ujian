@@ -1,4 +1,5 @@
 <?php
+$lang['online_test'] = "ONLINE TEST";
 $lang['disc'] = "DISC Test";
 $lang['no_statement'] = "No.";
 $lang['most'] = "MOST";
@@ -16,7 +17,7 @@ $lang['value_d'] = "Value D";
 $lang['value_i'] = "Value I";
 $lang['value_s'] = "Value S";
 $lang['value_c'] = "Value C";
-$lang['title'] = "CAT KEMENDIKBUD";
+$lang['title'] = "ONLINE TEST";
 $lang['installation_process'] = "Proses Instalasi";
 $lang['installation_completed'] = "Instalasi komplet. Kunjungi URL {base_url} untuk login.<br><br>Login default:<br> Email: admin@example.com <br>Password: admin<br><br>Untuk informasi atau kustomisasi kunjungi <a href='http://example.com/'>www.example.com/</a> ";
 $lang['installation_failed'] = "Instalasi gagal";
@@ -69,7 +70,7 @@ $lang['result_ist'] = "Hasil IST";
 $lang['result_disc'] = "Hasil DISC";
 $lang['no_registered_user'] = "Jumlah pengguna yang terdaftar";
 $lang['no_questions_qbank'] = "Jumlah soal yang tersedia";
- $lang['no_registered_quiz'] = "Jumlah ujian yang tersedia";
+$lang['no_registered_quiz'] = "Jumlah ujian yang tersedia";
 $lang['recently_registered'] = "User terdaftar terakhir";
 $lang['logout'] = "Keluar";
 $lang['userlist'] = "Daftar Pengguna";
@@ -278,4 +279,4 @@ $lang['Not-visited'] = "Belum Dikunjungi";
 $lang['payment_gateway_plugin_missing'] = "Plugin Jenis Pembayaran tidak ada, Anda tidak dapat membayar online.<br> Hubungin administrator untuk aktivasi layanan Anda secara manual.";
 $lang['payment_gateway_plugin_missing2'] = "Plugin Jenis Pembayaran tidak ada.";
 $lang['reset'] = "Reset";
-
+$lang['live_classroom'] = "Live Classroom";

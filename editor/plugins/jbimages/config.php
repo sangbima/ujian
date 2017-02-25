@@ -38,7 +38,7 @@
 | -------------------------------------------------------------------*/
 
 	
-	$config['img_path'] = '/savsoftquiz_v3.0/upload'; // Relative to domain name
+	$config['img_path'] = '/upload'; // Relative to domain name
 	$config['upload_path'] = $_SERVER['DOCUMENT_ROOT'] . $config['img_path']; // Physical path. [Usually works fine like this]
 
 
@@ -116,7 +116,8 @@
 | -------------------------------------------------------------------*/
 
 	
-	$config['encrypt_name'] = FALSE;
+	// $config['encrypt_name'] = FALSE;
+    $config['encrypt_name'] = TRUE;
 
 
 /*-------------------------------------------------------------------

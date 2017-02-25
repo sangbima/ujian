@@ -7,6 +7,7 @@ class Login extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->database();
+		$this->load->helper(array('form', 'url'));
 		$this->load->model("user_model");
 		$this->load->model("quiz_model");
 		$this->lang->load('basic', $this->config->item('language'));
@@ -29,9 +30,9 @@ class Login extends CI_Controller {
 		$data['title']=$this->lang->line('login');
 		// $data['recent_quiz']=$this->quiz_model->recent_quiz('5');
 
-		$this->load->view('header',$data);
-		$this->load->view('login',$data);
-		$this->load->view('footer',$data);
+		$this->load->view('login_header',$data);
+		$this->load->view('login_content',$data);
+		$this->load->view('login_footer',$data);
 	}
 	
 	public function registration()
