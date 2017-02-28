@@ -9,6 +9,8 @@ class Quiz extends CI_Controller {
 		$this->load->database();
 		$this->load->model("quiz_model");
 		$this->load->model("user_model");
+		$this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
 		$this->lang->load('basic', $this->config->item('language'));
 	}
 
@@ -113,7 +115,7 @@ class Quiz extends CI_Controller {
 	function no_q_available($cid,$lid)
 	{
 		$val="<select name='noq[]'>";
-		$query=$this->db->query(" select * from savsoft_qbank where cid='$cid' and lid='$lid' ");
+		$query=$this->db->query(" select * from qbank where cid='$cid' and lid='$lid' ");
 		$nor=$query->num_rows();
 		for($i=0; $i<= $nor; $i++)
 		{
@@ -136,7 +138,7 @@ class Quiz extends CI_Controller {
 		}
 		
 		if($this->quiz_model->remove_qid($quid,$qid)){
-			$this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('removed_successfully')." </div>");
+			$this->session->set_flashdata('message', $this->lang->line('removed_successfully'));
 		}
 		redirect('quiz/edit_quiz/'.$quid);
 	}
@@ -277,7 +279,7 @@ class Quiz extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('quiz_name', 'quiz_name', 'required');
 		if ($this->form_validation->run() == FALSE){
-			$this->session->set_flashdata('message', "<div class='alert alert-danger'>".validation_errors()." </div>");
+			$this->session->set_flashdata('message', validation_errors());
 			redirect('quiz/add_new/');
 		}else{
 			$quid=$this->quiz_model->insert_quiz();
@@ -304,7 +306,7 @@ class Quiz extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('quiz_name', 'quiz_name', 'required');
 		if ($this->form_validation->run() == FALSE){
-			$this->session->set_flashdata('message', "<div class='alert alert-danger'>".validation_errors()." </div>");
+			$this->session->set_flashdata('message', validation_errors());
 			redirect('quiz/edit_quiz/'.$quid);
 		}else{
 			$quid=$this->quiz_model->update_quiz($quid);
@@ -329,9 +331,9 @@ class Quiz extends CI_Controller {
 			exit($this->lang->line('permission_denied'));
 		} 
 		if($this->quiz_model->remove_quiz($quid)){
-			$this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('removed_successfully')." </div>");
+			$this->session->set_flashdata('message', $this->lang->line('removed_successfully'));
 		}else{
-			$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_remove')." </div>");
+			$this->session->set_flashdata('message', $this->lang->line('error_to_remove'));
 						
 		}
 		redirect('quiz');
@@ -367,9 +369,9 @@ class Quiz extends CI_Controller {
 					'gid'=>$this->config->item('default_gid'),
 					'su'=>'0'		
 				);
-				$this->db->insert('savsoft_users',$userdata);
+				$this->db->insert('users',$userdata);
 				$uid=$this->db->insert_id();
-				$query=$this->db->query("select * from savsoft_users where uid='$uid' ");
+				$query=$this->db->query("select * from users where uid='$uid' ");
 				$user=$query->row_array();
 				// creating login cookie
 				$user['base_url']=base_url();
@@ -390,12 +392,12 @@ class Quiz extends CI_Controller {
 
 			// validate start end date/time
 			if($data['quiz']['start_date'] > time()){
-				$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('quiz_not_available')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('quiz_not_available'));
 				redirect('quiz/quiz_detail/'.$quid);
 			}
 			// validate start end date/time
 			if($data['quiz']['end_date'] < time()){
-				$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('quiz_ended')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('quiz_ended'));
 				redirect('quiz/quiz_detail/'.$quid);
 		 	}
 
@@ -434,17 +436,17 @@ class Quiz extends CI_Controller {
 			$data['quiz']=$this->quiz_model->get_quiz($quid);
 			// validate assigned group
 			if(!in_array($gid,explode(',',$data['quiz']['gids']))){
-				$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('quiz_not_assigned_to_your_group')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('quiz_not_assigned_to_your_group'));
 				redirect('quiz/quiz_detail/'.$quid);
 			}
 			// validate start end date/time
 			if($data['quiz']['start_date'] > time()){
-				$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('quiz_not_available')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('quiz_not_available'));
 				redirect('quiz/quiz_detail/'.$quid);
 			}
 			// validate start end date/time
 			if($data['quiz']['end_date'] < time()){
-				$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('quiz_ended')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('quiz_ended'));
 				redirect('quiz/quiz_detail/'.$quid);
 			}
 
@@ -453,14 +455,14 @@ class Quiz extends CI_Controller {
 				$ip_address=explode(",",$data['quiz']['ip_address']);
 				$myip=$_SERVER['REMOTE_ADDR'];
 				if(!in_array($myip,$ip_address)){
-					$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('ip_declined')." </div>");
+					$this->session->set_flashdata('message', $this->lang->line('ip_declined'));
 					redirect('quiz/quiz_detail/'.$quid);
 				}
 			}
 		 	// validate maximum attempts
 			$maximum_attempt=$this->quiz_model->count_result($quid,$uid);
 			if($data['quiz']['maximum_attempts'] <= $maximum_attempt){
-				$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('reached_maximum_attempt')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('reached_maximum_attempt'));
 				redirect('quiz/quiz_detail/'.$quid);
 			}
 		
@@ -494,7 +496,7 @@ class Quiz extends CI_Controller {
 		$srid=$this->session->userdata('rid');
 		// if linked and session rid is not matched then something wrong.
 		if($rid != $srid){
-			$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('quiz_ended')." </div>");
+			$this->session->set_flashdata('message', $this->lang->line('quiz_ended'));
 			redirect('quiz/');
 		}
 		/*
@@ -511,7 +513,7 @@ class Quiz extends CI_Controller {
 		if($data['quiz']['end_date'] < time()){
 			$this->quiz_model->submit_result($rid);
 			$this->session->unset_userdata('rid');
-			$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('quiz_ended')." </div>");
+			$this->session->set_flashdata('message', $this->lang->line('quiz_ended'));
 			redirect('quiz/quiz_detail/'.$data['quiz']['quid']);
 		}
 
@@ -519,7 +521,7 @@ class Quiz extends CI_Controller {
 		if(($data['quiz']['start_time']+($data['quiz']['duration']*60)) < time()){
 			$this->quiz_model->submit_result($rid);
 			$this->session->unset_userdata('rid');
-			$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('time_over')." </div>");
+			$this->session->set_flashdata('message', $this->lang->line('time_over'));
 			redirect('quiz/quiz_detail/'.$data['quiz']['quid']);
 		}
 		// remaining time in seconds 
@@ -609,9 +611,9 @@ class Quiz extends CI_Controller {
 		$rid=$this->session->userdata('rid');
 		
 		if($this->quiz_model->submit_result()){
-			$this->session->set_flashdata('message', "<div class='alert alert-success'>".str_replace("{result_url}",site_url('result/view_result/'.$rid),$this->lang->line('quiz_submit_successfully'))." </div>");
+			$this->session->set_flashdata('message', str_replace("{result_url}",site_url('result/view_result/'.$rid),$this->lang->line('quiz_submit_successfully')));
 		}else{
-			$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_submit')." </div>");
+			$this->session->set_flashdata('message', $this->lang->line('error_to_submit'));
 		}
 		$this->session->unset_userdata('rid');		
 		if($this->session->userdata('logged_in')){				

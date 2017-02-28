@@ -58,5 +58,6 @@
 		</div>
 		<!-- //footer -->
 	</section>
+	<script type="text/javascript" src="<?php echo base_url();?>bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
 </body>
 </html>

@@ -88,7 +88,7 @@ Class User_model extends CI_Model
 			'subscription_expired'=>strtotime($this->input->post('subscription_expired')),
 			'su'=>$this->input->post('su')		
 		);
-		
+		// var_dump($userdata);die();
 		if($this->db->insert('users',$userdata)){
 			return true;
 		}else{

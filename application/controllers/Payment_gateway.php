@@ -9,6 +9,8 @@ class Payment_gateway extends CI_Controller {
 		$this->load->database();
 		$this->load->model("user_model");
 		$this->load->model("payment_model");
+		$this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
 		$this->lang->load('basic', $this->config->item('language'));
 	}
 

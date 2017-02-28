@@ -8,6 +8,8 @@ class Qbank extends CI_Controller {
 		parent::__construct();
 		$this->load->database();
 		$this->load->model("qbank_model");
+		$this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
 		$this->lang->load('basic', $this->config->item('language'));
 		// redirect if not loggedin
 		if(!$this->session->userdata('logged_in')){
@@ -52,9 +54,9 @@ class Qbank extends CI_Controller {
 		} 
 
 		if($this->qbank_model->remove_question($qid)){
-			$this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('removed_successfully')." </div>");
+			$this->session->set_flashdata('message', $this->lang->line('removed_successfully'));
 		}else{
-			$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_remove')." </div>");
+			$this->session->set_flashdata('message', $this->lang->line('error_to_remove'));
 		}
 		redirect('qbank');
 	}
@@ -79,35 +81,35 @@ class Qbank extends CI_Controller {
 				if(!is_numeric($this->input->post('nop'))){
 					$nop=4;
 				}
-				redirect('qbank/question_new_1/'.$nop);
+				redirect('qbank/new_question_1/'.$nop);
 			}
 			if($this->input->post('question_type')=='2'){
 				$nop=$this->input->post('nop');
 				if(!is_numeric($this->input->post('nop'))){
 					$nop=4;
 				}
-				redirect('qbank/question_new_2/'.$nop);
+				redirect('qbank/new_question_2/'.$nop);
 			}
 			if($this->input->post('question_type')=='3'){
 				$nop=$this->input->post('nop');
 				if(!is_numeric($this->input->post('nop'))){
 					$nop=4;
 				}
-				redirect('qbank/question_new_3/'.$nop);
+				redirect('qbank/new_question_3/'.$nop);
 			}
 			if($this->input->post('question_type')=='4'){
 				$nop=$this->input->post('nop');
 				if(!is_numeric($this->input->post('nop'))){
 					$nop=4;
 				}
-				redirect('qbank/question_new_4/'.$nop);
+				redirect('qbank/new_question_4/'.$nop);
 			}
 			if($this->input->post('question_type')=='5'){
 				$nop=$this->input->post('nop');
 				if(!is_numeric($this->input->post('nop'))){
 					$nop=4;
 				}
-				redirect('qbank/question_new_5/'.$nop);
+				redirect('qbank/new_question_5/'.$nop);
 			}
 
 		}
@@ -127,9 +129,9 @@ class Qbank extends CI_Controller {
 		}
 		if($this->input->post('question')){
 			if($this->qbank_model->insert_question_1()){
-				$this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('data_added_successfully')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('data_added_successfully'));
 			}else{
-				$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_add_data')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('error_to_add_data'));
 			}
 			redirect('qbank/pre_new_question/');
 		}			
@@ -154,9 +156,9 @@ class Qbank extends CI_Controller {
 		}
 		if($this->input->post('question')){
 			if($this->qbank_model->insert_question_2()){
-				$this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('data_added_successfully')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('data_added_successfully'));
 			}else{
-				$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_add_data')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('error_to_add_data'));
 			}
 			redirect('qbank/pre_new_question/');
 		}			
@@ -181,9 +183,9 @@ class Qbank extends CI_Controller {
 		}
 		if($this->input->post('question')){
 			if($this->qbank_model->insert_question_3()){
-				$this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('data_added_successfully')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('data_added_successfully'));
 			}else{
-				$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_add_data')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('error_to_add_data'));
 			}
 			redirect('qbank/pre_new_question/');
 		}			
@@ -207,9 +209,9 @@ class Qbank extends CI_Controller {
 		}
 		if($this->input->post('question')){
 			if($this->qbank_model->insert_question_4()){
-				$this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('data_added_successfully')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('data_added_successfully'));
 			}else{
-				$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_add_data')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('error_to_add_data'));
 			}
 			redirect('qbank/pre_new_question/');
 		}			
@@ -233,9 +235,9 @@ class Qbank extends CI_Controller {
 		}
 		if($this->input->post('question')){
 			if($this->qbank_model->insert_question_5()){
-				$this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('data_added_successfully')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('data_added_successfully'));
 			}else{
-				$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_add_data')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('error_to_add_data'));
 			}
 			redirect('qbank/pre_new_question/');
 		}			
@@ -259,9 +261,9 @@ class Qbank extends CI_Controller {
 		}
 		if($this->input->post('question')){
 			if($this->qbank_model->update_question_1($qid)){
-				$this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('data_updated_successfully')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('data_updated_successfully'));
 			}else{
-				$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_update_data')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('error_to_update_data'));
 			}
 			redirect('qbank/edit_question_1/'.$qid);
 		}			
@@ -288,9 +290,9 @@ class Qbank extends CI_Controller {
 		}
 		if($this->input->post('question')){
 			if($this->qbank_model->update_question_2($qid)){
-				$this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('data_updated_successfully')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('data_updated_successfully'));
 			}else{
-				$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_update_data')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('error_to_update_data'));
 			}
 			redirect('qbank/edit_question_2/'.$qid);
 		}			
@@ -316,9 +318,9 @@ class Qbank extends CI_Controller {
 		}
 		if($this->input->post('question')){
 			if($this->qbank_model->update_question_3($qid)){
-				$this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('data_updated_successfully')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('data_updated_successfully'));
 			}else{
-				$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_update_data')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('error_to_update_data'));
 			}
 			redirect('qbank/edit_question_3/'.$qid);
 		}			
@@ -344,9 +346,9 @@ class Qbank extends CI_Controller {
 		}
 		if($this->input->post('question')){
 			if($this->qbank_model->update_question_4($qid)){
-				$this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('data_updated_successfully')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('data_updated_successfully'));
 			}else{
-				$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_update_data')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('error_to_update_data'));
 			}
 			redirect('qbank/edit_question_4/'.$qid);
 		}			
@@ -372,9 +374,9 @@ class Qbank extends CI_Controller {
 		}
 		if($this->input->post('question')){
 			if($this->qbank_model->update_question_5($qid)){
-				$this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('data_updated_successfully')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('data_updated_successfully'));
 			}else{
-				$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_update_data')." </div>");
+				$this->session->set_flashdata('message', $this->lang->line('error_to_update_data'));
 			}
 			redirect('qbank/edit_question_5/'.$qid);
 		}			
@@ -411,9 +413,9 @@ class Qbank extends CI_Controller {
 		}
 
 		if($this->qbank_model->insert_category()){
-			$this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('data_added_successfully')." </div>");
+			$this->session->set_flashdata('message', $this->lang->line('data_added_successfully'));
 		}else{
-			$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_add_data')." </div>");
+			$this->session->set_flashdata('message', $this->lang->line('error_to_add_data'));
 		}
 		redirect('qbank/category_list/');
 	}
@@ -426,9 +428,9 @@ class Qbank extends CI_Controller {
 		}
 
 		if($this->qbank_model->update_category($cid)){
-			echo "<div class='alert alert-success'>".$this->lang->line('data_updated_successfully')." </div>";
+			echo $this->lang->line('data_updated_successfully');
 		}else{
-			echo "<div class='alert alert-danger'>".$this->lang->line('error_to_update_data')." </div>";
+			echo $this->lang->line('error_to_update_data');
 		}
 	}
 	
@@ -440,9 +442,9 @@ class Qbank extends CI_Controller {
 		} 
 
 		if($this->qbank_model->remove_category($cid)){
-			$this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('removed_successfully')." </div>");
+			$this->session->set_flashdata('message', $this->lang->line('removed_successfully'));
 		}else{
-			$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_remove')." </div>");
+			$this->session->set_flashdata('message', $this->lang->line('error_to_remove'));
 		}
 		redirect('qbank/category_list');
 	}
@@ -467,9 +469,9 @@ class Qbank extends CI_Controller {
 		}
 	
 		if($this->qbank_model->insert_level()){
-			$this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('data_added_successfully')." </div>");
+			$this->session->set_flashdata('message', $this->lang->line('data_added_successfully'));
 		}else{
-			$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_add_data')." </div>");		
+			$this->session->set_flashdata('message', $this->lang->line('error_to_add_data'));		
 		}
 		redirect('qbank/level_list/');
 	}
@@ -481,9 +483,9 @@ class Qbank extends CI_Controller {
 			exit($this->lang->line('permission_denied'));
 		}
 		if($this->qbank_model->update_level($lid)){
-            echo "<div class='alert alert-success'>".$this->lang->line('data_updated_successfully')." </div>";
+            echo $this->lang->line('data_updated_successfully');
 		}else{
-			echo "<div class='alert alert-danger'>".$this->lang->line('error_to_update_data')." </div>";
+			echo $this->lang->line('error_to_update_data');
 		}
 	}
 	
@@ -495,9 +497,9 @@ class Qbank extends CI_Controller {
 		} 
 
 		if($this->qbank_model->remove_level($lid)){
-			$this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('removed_successfully')." </div>");
+			$this->session->set_flashdata('message', $this->lang->line('removed_successfully'));
 		}else{
-			$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_remove')." </div>");
+			$this->session->set_flashdata('message', $this->lang->line('error_to_remove'));
 		}
 		redirect('qbank/level_list');
 	}
@@ -593,7 +595,7 @@ class Qbank extends CI_Controller {
 		} else {
 			echo "Error: " . $_FILES["file"]["error"];
 		}	
-		$this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('data_imported_successfully')." </div>");
+		$this->session->set_flashdata('message', $this->lang->line('data_imported_successfully'));
 		redirect('qbank');
 	}
 }

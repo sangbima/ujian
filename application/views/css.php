@@ -1,35 +1,22 @@
- <div class="container">
-
-   
- 
-  
-
-
-
-<div class="row">
-
-
-<form class="form-signin" method="post" action="<?php echo site_url('dashboard/css');?>" >
-<h4><?php echo $this->lang->line('custom_css');?></h4>
-<br>
-
-			 
-			
-<br>
-<div class="form-group">	
-<textarea name="config_val" style="width:800px;height:500px;"><?php echo $result;?></textarea>
- 
-
- 			</div>
- 			<div class="form-group">	  
-					<button class="btn btn-primary" type="submit"><?php echo $this->lang->line('submit');?></button>
-			</div>
- <input type="checkbox" name="force_write"  > <span style="font-size:11px;"> Tick if server required 777 permission to write file </span>
-
-			</form>
-</div>
- 
-<br><br>
-
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <form class="form-signin" method="post" action="<?php echo site_url('dashboard/css');?>" >
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><?php echo $this->lang->line('custom_css');?>: <small><?php echo $this->lang->line('config_warning');?></small></h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">    
+                            <textarea name="config_val" style="width:800px;height:500px;"><?php echo $result;?></textarea>
+                        </div>
+                        <input type="checkbox" name="force_write"  > <span style="font-size:11px;"> Tick if server required 777 permission to write file </span>
+                    </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-primary" type="submit"><?php echo $this->lang->line('submit');?></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

@@ -11,7 +11,13 @@ $config['base_url'] = $sq_base_url;
 
 
 // enable webcam js ( true or false )
-$config['webcam']=true;
+$config['webcam']=false;
+
+// enable certificate ( true or false )
+$config['certificate']=false;
+
+// enable option with_login ( true or false )
+$config['with_login']=true;
 
  
 // google chart ( true or false )

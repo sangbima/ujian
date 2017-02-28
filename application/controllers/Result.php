@@ -8,6 +8,8 @@ class Result extends CI_Controller {
 		parent::__construct();
 		$this->load->database();
 		$this->load->model("result_model");
+		$this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
 		$this->lang->load('basic', $this->config->item('language'));
 		// redirect if not loggedin
 	}
@@ -55,9 +57,9 @@ class Result extends CI_Controller {
 		} 
 			
 		if($this->result_model->remove_result($rid)){
-			$this->session->set_flashdata('message', "<div class='alert alert-success'>".$this->lang->line('removed_successfully')." </div>");
+			$this->session->set_flashdata('message', $this->lang->line('removed_successfully'));
 		}else{
-			$this->session->set_flashdata('message', "<div class='alert alert-danger'>".$this->lang->line('error_to_remove')." </div>");
+			$this->session->set_flashdata('message', $this->lang->line('error_to_remove'));
 		}
 		redirect('result');	
 	}

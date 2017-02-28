@@ -46,11 +46,21 @@ Class Quiz_model extends CI_Model
  
  	function insert_quiz()
 	{
+		$start_date = $this->input->post('start_date');
+		$end_date = $this->input->post('end_date');
+		$start_time = $this->input->post('start_time');
+		$end_time = $this->input->post('end_time');
+
+		$inputStartDate = $start_date . ' ' . $start_time;
+		$inputEndDate = $end_date . ' ' . $end_time;
+
 		$userdata=array(
 			'quiz_name'=>$this->input->post('quiz_name'),
 			'description'=>$this->input->post('description'),
-			'start_date'=>strtotime($this->input->post('start_date')),
-			'end_date'=>strtotime($this->input->post('end_date')),
+			// 'start_date'=>strtotime($this->input->post('start_date')),
+			// 'end_date'=>strtotime($this->input->post('end_date')),
+			'start_date'=>strtotime($inputStartDate),
+			'end_date'=>strtotime($inputEndDate),
 			'duration'=>$this->input->post('duration'),
 			'maximum_attempts'=>$this->input->post('maximum_attempts'),
 			'pass_percentage'=>$this->input->post('pass_percentage'),
@@ -64,22 +74,33 @@ Class Quiz_model extends CI_Model
 			'question_selection'=>$this->input->post('question_selection')
 		);
 	 	$userdata['gen_certificate']=$this->input->post('gen_certificate'); 
-	 
+
 		if($this->input->post('certificate_text')){
 			$userdata['certificate_text']=$this->input->post('certificate_text'); 
 		}
-	  	$this->db->insert('quiz',$userdata);
-	 	$quid=$this->db->insert_id();
-		return $quid;
+		
+	  	$this->db->insert('quiz',$userdata)
+	  	$quid=$this->db->insert_id();
+	  	return $quid;
 	}
 	
 	function update_quiz($quid)
 	{
+		$start_date = $this->input->post('start_date');
+		$end_date = $this->input->post('end_date');
+		$start_time = $this->input->post('start_time');
+		$end_time = $this->input->post('end_time');
+
+		$inputStartDate = $start_date . ' ' . $start_time;
+		$inputEndDate = $end_date . ' ' . $end_time;
+		
 		$userdata=array(
 			'quiz_name'=>$this->input->post('quiz_name'),
 			'description'=>$this->input->post('description'),
-			'start_date'=>strtotime($this->input->post('start_date')),
-			'end_date'=>strtotime($this->input->post('end_date')),
+			// 'start_date'=>strtotime($this->input->post('start_date')),
+			// 'end_date'=>strtotime($this->input->post('end_date')),
+			'start_date'=>strtotime($inputStartDate),
+			'end_date'=>strtotime($inputEndDate),
 			'duration'=>$this->input->post('duration'),
 			'maximum_attempts'=>$this->input->post('maximum_attempts'),
 			'pass_percentage'=>$this->input->post('pass_percentage'),

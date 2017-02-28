@@ -16,7 +16,7 @@ $logged_in=$this->session->userdata('logged_in');
 	<div class="input-group">
     <input type="text" class="form-control" name="search" placeholder="<?php echo $this->lang->line('search');?>...">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="submit"><?php echo $this->lang->line('search');?></button>
+        <button class="btn btn-default btn-special" type="submit"><?php echo $this->lang->line('search');?></button>
       </span>
 	 
 	  
@@ -82,7 +82,7 @@ foreach($result as $key => $val){
  <td><?php echo substr(strip_tags($val['quiz_name']),0,50);?></td>
 <td><?php echo $val['noq'];?></td>
  <td>
-<a href="<?php echo site_url('quiz/quiz_detail/'.$val['quid']);?>" class="btn btn-success"  ><?php echo $this->lang->line('attempt');?> </a>
+<a href="<?php echo site_url('quiz/quiz_detail/'.$val['quid']);?>" class="btn btn-success btn-special"  ><?php echo $this->lang->line('attempt');?> </a>
 
 <?php 
 if($logged_in['su']=='1'){
@@ -137,7 +137,7 @@ foreach($result as $key => $val){
                         <div class="panel-footer">
                          
 						 
-<a href="<?php echo site_url('quiz/quiz_detail/'.$val['quid']);?>" class="btn btn-success"  ><?php echo $this->lang->line('attempt');?> </a>
+<a href="<?php echo site_url('quiz/quiz_detail/'.$val['quid']);?>" class="btn btn-success btn-special"  ><?php echo $this->lang->line('attempt');?> </a>
 
 <?php 
 if($logged_in['su']=='1'){
@@ -176,12 +176,12 @@ if($logged_in['su']=='1'){
 <?php
 if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->config->item('number_of_rows')); }else{ $back='0'; } ?>
 
-<a href="<?php echo site_url('quiz/index/'.$back.'/'.$list_view);?>"  class="btn btn-primary"><?php echo $this->lang->line('back');?></a>
+<a href="<?php echo site_url('quiz/index/'.$back.'/'.$list_view);?>"  class="btn btn-primary btn-special"><?php echo $this->lang->line('back');?></a>
 &nbsp;&nbsp;
 <?php
  $next=$limit+($this->config->item('number_of_rows'));  ?>
 
-<a href="<?php echo site_url('quiz/index/'.$next.'/'.$list_view);?>"  class="btn btn-primary"><?php echo $this->lang->line('next');?></a>
+<a href="<?php echo site_url('quiz/index/'.$next.'/'.$list_view);?>"  class="btn btn-primary btn-special"><?php echo $this->lang->line('next');?></a>
 
 
 

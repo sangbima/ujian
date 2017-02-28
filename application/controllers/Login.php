@@ -8,6 +8,7 @@ class Login extends CI_Controller {
 		parent::__construct();
 		$this->load->database();
 		$this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
 		$this->load->model("user_model");
 		$this->load->model("quiz_model");
 		$this->lang->load('basic', $this->config->item('language'));

@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-6">
-			<form method="post" action="<?php echo site_url('qbank/index/');?>">
+			<form id="questionSearch" method="post" action="<?php echo site_url('qbank/index/');?>">
 				<div class="input-group">
     				<input type="text" class="form-control" name="search" placeholder="<?php echo $this->lang->line('search');?>...">
       				<span class="input-group-btn">
@@ -16,25 +16,17 @@
 			<div class="col-md-4">
 				<select id="inputcid" name="cid" class=" form-control selecter_1">
 					<option value="0"><?php echo $this->lang->line('all_category');?></option>
-					<?php 
-						foreach($category_list as $key => $val){
-					?>
-							<option value="<?php echo $val['cid'];?>" <?php if($val['cid']==$cid){ echo 'selected';} ?> ><?php echo $val['category_name'];?></option>
-					<?php 
-						}
-					?>
+					<?php foreach($category_list as $key => $val){ ?>
+					<option value="<?php echo $val['cid'];?>" <?php if($val['cid']==$cid){ echo 'selected';} ?> ><?php echo $val['category_name'];?></option>
+					<?php } ?>
 				</select>
 			</div>
 			<div class="col-md-4">
 				<select  id="inputlid" name="lid" class="form-control selecter_1">
 					<option value="0"><?php echo $this->lang->line('all_level');?></option>
-					<?php 
-						foreach($level_list as $key => $val){
-					?>
-							<option value="<?php echo $val['lid'];?>"  <?php if($val['lid']==$lid){ echo 'selected';} ?> ><?php echo $val['level_name'];?></option>
-					<?php 
-						}
-					?>
+					<?php foreach($level_list as $key => $val){ ?>
+					<option value="<?php echo $val['lid'];?>"  <?php if($val['lid']==$lid){ echo 'selected';} ?> ><?php echo $val['level_name'];?></option>
+					<?php } ?>
 				</select>
 			</div>
 			<div class="col-md-4">
@@ -44,7 +36,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<div class="panel panel-primary">
+			<div id="questionFilter" class="panel panel-primary">
 				<div class="panel-heading">
 					<h3 class="panel-title"><?php echo $title;?></h3>
 				</div>
@@ -55,20 +47,15 @@
 							<th><?php echo $this->lang->line('question');?></th>
 							<th><?php echo $this->lang->line('question_type');?></th>
 							<th><?php echo $this->lang->line('category_name');?> / <?php echo $this->lang->line('level_name');?></th>
-
 							<th><?php echo $this->lang->line('percent_corrected');?></th>
 							<th><?php echo $this->lang->line('action');?> </th>
 						</tr>
-						<?php 
-						if(count($result)==0){
-						?>
+						<?php if(count($result)==0){ ?>
 						<tr>
 							<td colspan="3"><?php echo $this->lang->line('no_record_found');?></td>
 						</tr>
-						<?php
-						}
-						foreach($result as $key => $val){
-						?>
+						<?php } ?>
+						<?php foreach($result as $key => $val){ ?>
 						<tr>
 							<td>  <a href="javascript:show_question_stat('<?php echo $val['qid'];?>');">+</a>  <?php echo $val['qid'];?></td>
 							<td><?php echo substr(strip_tags($val['question']),0,40);?>
@@ -90,30 +77,28 @@
 							</td>
 							<td>
 								<?php 
-								$qn=1;
-								if($val['question_type']==$this->lang->line('multiple_choice_single_answer')){
 									$qn=1;
-								}
-								if($val['question_type']==$this->lang->line('multiple_choice_multiple_answer')){
-									$qn=2;
-								}
-								if($val['question_type']==$this->lang->line('match_the_column')){
-									$qn=3;
-								}
-								if($val['question_type']==$this->lang->line('short_answer')){
-									$qn=4;
-								}
-								if($val['question_type']==$this->lang->line('long_answer')){
-									$qn=5;
-								}
+									if($val['question_type']==$this->lang->line('multiple_choice_single_answer')){
+										$qn=1;
+									}
+									if($val['question_type']==$this->lang->line('multiple_choice_multiple_answer')){
+										$qn=2;
+									}
+									if($val['question_type']==$this->lang->line('match_the_column')){
+										$qn=3;
+									}
+									if($val['question_type']==$this->lang->line('short_answer')){
+										$qn=4;
+									}
+									if($val['question_type']==$this->lang->line('long_answer')){
+										$qn=5;
+									}
 								?>
 								<a href="<?php echo site_url('qbank/edit_question_'.$qn.'/'.$val['qid']);?>"><i class="fa fa-edit"></i></a>
 								<a href="javascript:remove_entry('qbank/remove_question/<?php echo $val['qid'];?>');"><i class="fa fa-remove"></i></a>
 							</td>
 						</tr>
-						<?php 
-						}
-						?>
+						<?php } ?>
 					</table>
 				</div>
 			</div>
@@ -121,13 +106,11 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<?php
-			if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->config->item('number_of_rows')); }else{ $back='0'; } ?>
-			<a href="<?php echo site_url('qbank/index/'.$back.'/'.$cid.'/'.$lid);?>"  class="btn btn-primary"><?php echo $this->lang->line('back');?></a>
+			<?php if(($limit-($this->config->item('number_of_rows')))>=0){ $back=$limit-($this->config->item('number_of_rows')); }else{ $back='0'; } ?>
+			<a href="<?php echo site_url('qbank/index/'.$back.'/'.$cid.'/'.$lid);?>"  class="btn btn-primary btn-special"><?php echo $this->lang->line('back');?></a>
 			&nbsp;&nbsp;
-			<?php
-			 $next=$limit+($this->config->item('number_of_rows'));  ?>
-			<a href="<?php echo site_url('qbank/index/'.$next.'/'.$cid.'/'.$lid);?>"  class="btn btn-primary"><?php echo $this->lang->line('next');?></a>			
+			<?php $next=$limit+($this->config->item('number_of_rows'));  ?>
+			<a href="<?php echo site_url('qbank/index/'.$next.'/'.$cid.'/'.$lid);?>"  class="btn btn-primary btn-special"><?php echo $this->lang->line('next');?></a>			
 		</div>
 	</div>
 	<div class="row">
@@ -138,25 +121,17 @@
 				<div class="col-md-3">
 					<select name="cid" class="form-control selecter_1">
 						<option value="0"><?php echo $this->lang->line('select_category');?></option>
-						<?php 
-						foreach($category_list as $key => $val){
-						?>
+						<?php foreach($category_list as $key => $val){ ?>
 						<option value="<?php echo $val['cid'];?>" <?php if($val['cid']==$cid){ echo 'selected';} ?> ><?php echo $val['category_name'];?></option>
-						<?php 
-						}
-						?>
+						<?php } ?>
 					</select>
 				</div>
 				<div class="col-md-3">
 					<select name="did" class="form-control selecter_1">
 						<option value="0"><?php echo $this->lang->line('select_level');?></option>
-						<?php 
-						foreach($level_list as $key => $val){
-						?>
+						<?php foreach($level_list as $key => $val){ ?>
 						<option value="<?php echo $val['lid'];?>"  <?php if($val['lid']==$lid){ echo 'selected';} ?> ><?php echo $val['level_name'];?></option>
-						<?php 
-						}
-						?>
+						<?php } ?>
 					</select>
 				</div>
 				<div class="col-md-6">
@@ -164,7 +139,7 @@
 					<input type="hidden" name="size" value="3500000">
 					<input type="file" class="form-control" name="xlsfile">
 					<div style="clear:both;"></div>
-					<input type="submit" value="Import" style="margin-top:5px;" class="btn btn-default">
+					<input type="submit" value="Import" style="margin-top:5px;" class="btn btn-default btn-special">
 					<p><a href="<?php echo base_url();?>sample/sample.xls" target="new">Click here</a> <?php echo $this->lang->line('upload_excel_info');?></p>
 				</div>
 				<?php echo form_close(); ?>

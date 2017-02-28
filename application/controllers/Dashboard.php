@@ -11,6 +11,8 @@ class Dashboard extends CI_Controller {
 		$this->load->model("qbank_model");
 		$this->load->model("quiz_model");
 		$this->load->model("result_model");
+		$this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
 		$this->lang->load('basic', $this->config->item('language'));
 		// redirect if not loggedin
 		if(!$this->session->userdata('logged_in')){

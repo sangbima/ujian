@@ -12,10 +12,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- Custom CSS -->
 <link href="<?php echo base_url('css/style.css');?>" rel='stylesheet' type='text/css' />
 <!-- font CSS -->
-<link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+<!-- <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'> -->
 <!-- font-awesome icons -->
 <link rel="stylesheet" href="<?php echo base_url('css/font.css');?>" type="text/css"/>
-<link href="<?php echo base_url('css/font-awesome.css');?>" rel="stylesheet"> 
+<link href="<?php echo base_url('css/font-awesome.css');?>" rel="stylesheet">
+<link rel="stylesheet" href="<?php echo base_url('bootstrap-datepicker/css/bootstrap-datepicker.min.css');?>">
 <!-- //font-awesome icons -->
 <script>
 	var base_url="<?php echo base_url();?>";
@@ -198,14 +199,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<button id="toggle"><i class="fa fa-arrows-alt" aria-hidden="true"></i></button>	
 				</section>
 			</div>
-			<div class="w3l_search">
-				<form action="#" method="post">
-					<input type="text" name="search" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" required="">
-					<button class="btn btn-default btn-search" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-				</form>
-			</div>
-			
-            <!--Star Header Right-->
+			<!--Star Header Right-->
             <div class="header-right">
 				<div class="profile_details_left">
 					<div class="header-right-left">

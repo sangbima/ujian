@@ -55,25 +55,19 @@
                             <th><?php echo $this->lang->line('group_name');?> </th>
                             <th><?php echo $this->lang->line('contact_no');?> </th>
                         </tr>
-                        <?php 
-                        if(count($result)==0){
-                            ?>
+                        <?php if(count($result)==0){ ?>
                         <tr>
                         <td colspan="3"><?php echo $this->lang->line('no_record_found');?></td>
                         </tr>	
-                        <?php
-                        }
-                        foreach($result as $key => $val){
-                        ?>
+                        <?php } ?>
+                        <?php foreach($result as $key => $val){ ?>
                         <tr>
                             <td><?php echo $val['email'];?></td>
                             <td><?php echo $val['first_name'];?> <?php echo $val['last_name'];?></td>
                             <td><?php echo $val['group_name'];?></td>
                             <td><?php echo $val['contact_no'];?></td>
                         </tr>
-                        <?php 
-                        }
-                        ?>
+                        <?php } ?>
                     </table>
                 </div>
             </div>

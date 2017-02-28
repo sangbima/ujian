@@ -3,15 +3,13 @@
 				<div class="grids-heading gallery-heading signup-heading">
 					<h2>Login</h2>
 				</div>
-				<?php 
-                if($this->session->flashdata('message')){
-                ?>
+				<?php if($this->session->flashdata('message')){ ?>
                     <div class="alert alert-danger alert-dismissable">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                         <?php echo $this->session->flashdata('message'); ?>
                     </div>
-                <?php	
-                }
+                <?php } ?>
+                <?php
                     $attributes = array("name" => "login_form", "id" => "login_form");
                     echo form_open('login/verifylogin', $attributes);
                 ?>
