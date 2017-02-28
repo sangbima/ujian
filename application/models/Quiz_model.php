@@ -78,8 +78,8 @@ Class Quiz_model extends CI_Model
 		if($this->input->post('certificate_text')){
 			$userdata['certificate_text']=$this->input->post('certificate_text'); 
 		}
-		
-	  	$this->db->insert('quiz',$userdata)
+
+	  	$this->db->insert('quiz',$userdata);
 	  	$quid=$this->db->insert_id();
 	  	return $quid;
 	}
